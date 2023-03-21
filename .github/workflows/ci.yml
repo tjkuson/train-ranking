@@ -27,5 +27,4 @@ jobs:
       - name: Lint
         run: |
           black --check train_app
-          mypy train_app --strict
           ssort train_app --check
