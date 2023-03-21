@@ -1,0 +1,5 @@
+# NOTE: keep in sync with the dev requires list in pyproject.toml
+black >= 23.1.0
+mypy >= 1
+ruff >= 0.0.257
+ssort >= 0.11.6
