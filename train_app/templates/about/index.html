@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block content %}
+<div class="content">
+  <h1>About</h1>
+  <h2>This website</h2>
+  <p>
+    This is a web application that monitors the performance of multiple train
+    operators in the United Kingdom.
+  </p>
+  <p>
+    It is a work in progress, and is currently in the early stages of
+    development. Its code is available on GitHub if you are into that thing.
+  </p>
+  <h2>The data</h2>
+  This website uses data from the public National Rail API. Performance data is
+  measure with respect to the day, but updated in real-time. This website
+  periodically queries the API for the latest performance data, and stores it in
+  a database. The data is then used to generate the content on this website.
+  <h2>The author</h2>
+  <p>
+    This website was created by <a href="https://tjkuson.me/">some guy</a> for a
+    bit of fun and as an experiment.
+  </p>
+  <h2>Acknowledgements</h2>
+  <p>
+    This project would not be possible without the help of others. A
+    non-exhaustive list is as follows:
+  </p>
+  <ul>
+    <li>
+      The
+      <a href="https://wiki.openraildata.com//index.php?title=Main_Page"
+        >Open Rail Data Wiki</a
+      >
+      contributors
+    </li>
+    <li>
+      Those who maintain the
+      <a href="https://publicdatafeeds.networkrail.co.uk/"
+        >Network Rail open data platform</a
+      >
+    </li>
+    <li>And, of course, rail workers</li>
+  </ul>
+</div>
+{% endblock %}

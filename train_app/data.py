@@ -61,8 +61,8 @@ class StompClient(stomp.ConnectionListener):
                     csv_writer = writer(file)
                     csv_writer.writerow(item.values())
 
-        except Exception:
-            logging.exception()
+        except Exception as exc:
+            logging.exception(exc)
         else:
             logging.info("Message received and parsed successfully")
 

@@ -1,0 +1,24 @@
+{
+  "name": "train_app",
+  "version": "1.0.0",
+  "description": "> Rank train operators based on their punctuality.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write **/*.{js,css,html,json,md,yml} --ignore-path .gitignore",
+    "format-check": "prettier --check **/*.{js,css,html,json,md,yml} --ignore-path .gitignore"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjkuson/train-ranking.git"
+  },
+  "author": "Tom Kuson",
+  "license": "AGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/tjkuson/train-ranking/issues"
+  },
+  "homepage": "https://github.com/tjkuson/train-ranking#readme",
+  "devDependencies": {
+    "prettier": "^2.8.6"
+  }
+}

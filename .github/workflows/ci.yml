@@ -24,7 +24,9 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
+          npm install
       - name: Lint
         run: |
           black --check train_app
-          ssort train_app --check
+          ssort --check train_app
+          npm run format-check

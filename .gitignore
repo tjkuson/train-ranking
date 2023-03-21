@@ -166,3 +166,6 @@ cython_debug/
 # Data storage
 train_app/train.db
 train_app/train_data.csv
+
+# Node
+node_modules/

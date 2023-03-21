@@ -2,8 +2,8 @@ version: "3.1"
 services:
   app:
     build:
-        context: .
-        dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile
     stop_signal: SIGINT
     ports:
       - "5000:5000"
@@ -12,6 +12,6 @@ services:
         source: .
         target: /app
     environment:
-        - FLASK_APP=train_app
-        - FLASK_ENV=development
+      - FLASK_APP=train_app
+      - FLASK_ENV=development
     command: python3 -m flask --app train_app run --debug
