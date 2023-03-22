@@ -8,6 +8,7 @@ import sys
 import time
 from csv import writer
 from datetime import UTC, datetime
+from pathlib import Path
 from typing import Any
 
 import stomp
@@ -35,8 +36,8 @@ class StompClient(stomp.ConnectionListener):
         """Log, warn, and exit when the connection is disconnected."""
         reconnect_delay_secs = 15
         logging.warning(
-            "Disconnected - waiting {seconds} seconds before exiting",
-            extra={"seconds": reconnect_delay_secs},
+            "Disconnected - waiting %s seconds before exiting",
+            reconnect_delay_secs,
         )
         time.sleep(reconnect_delay_secs)
         logging.warning("Exiting")
@@ -44,19 +45,23 @@ class StompClient(stomp.ConnectionListener):
 
     def on_connecting(self: StompClient, host_and_port: tuple[str, int]) -> None:
         """Log when the connection is being established."""
-        logging.info("Connecting to {host_port}", extra={"host_port": host_and_port[0]})
+        logging.info("Connecting to %s", extra={"host_port": host_and_port[0]})
 
     def on_message(self: StompClient, frame: stomp.utils.Frame) -> None:
         """Parse data when a message is received from the server."""
         try:
             message = json.loads(frame.body)["RTPPMDataMsgV1"]
-            with open("train_data.csv", "a") as file:
+            train_data_csv = Path(__file__).parent / "train_data.csv"
+            with open(train_data_csv, "a") as file:
                 ppm_data = self.get_ppm(message)
                 # Save each dict item on a new line
                 for item in ppm_data:
                     logging.info(
-                        "Logging data for {operator_name}",
-                        extra={"operator_name": item["name"]},
+                        "Logging data for %s: ppm=%s, date=%s, time=%s",
+                        item["name"],
+                        item["ppm"],
+                        item["date"],
+                        item["time"],
                     )
                     csv_writer = writer(file)
                     csv_writer.writerow(item.values())

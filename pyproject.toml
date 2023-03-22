@@ -45,6 +45,10 @@ select = [
 ]
 target-version = "py311"
 
+[[tool.mypy.overrides]]
+module = "stomp"
+ignore_missing_imports = true
+
 [project]
 name = "flask-spark_template"
 requires-python = ">=3.11"

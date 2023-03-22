@@ -8,8 +8,9 @@ import pandas as pd
 
 def create_db() -> None:
     """Create database from schema."""
-    schema_path = Path("schema.sql")
-    with sqlite3.connect("train.db") as conn:
+    schema_path = Path(__file__).parent / "schema.sql"
+    db_path = Path(__file__).parent / "train.db"
+    with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         with open(schema_path) as file:
             cursor.executescript(file.read())
@@ -27,7 +28,14 @@ def load_ppm_data(csv_file: Path) -> pd.DataFrame:
     """
     column_names = ["name", "ppm", "record_date", "record_time"]
     ppm_df = pd.read_csv(csv_file, names=column_names)
-    # TODO: Do cleaning and validation here
+    # If we have multiple records for a given operator on a given day, take the latest
+    ppm_df = ppm_df.sort_values("record_time", ascending=False).drop_duplicates(
+        subset=["name", "record_date"], keep="first"
+    )
+    # Check each operator has only one record per day
+    if ppm_df.groupby(["name", "record_date"]).size().max() != 1:
+        msg = "Multiple records per day for some operators even after cleaning."
+        raise ValueError(msg)
     return ppm_df
 
 
@@ -39,7 +47,8 @@ def save_ppm_data(csv_file: Path) -> None:
         msg = f"CSV file {csv_file} not found"
         raise FileNotFoundError(msg)
 
-    with sqlite3.connect("train.db") as conn:
+    db_path = Path(__file__).parent / "train.db"
+    with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         operators = ppm_df["name"].unique()
         # Check all operators are in the operator table of the database
@@ -55,7 +64,7 @@ def save_ppm_data(csv_file: Path) -> None:
         # Create operator name to id mapping
         cursor.execute("SELECT * FROM operator")
         operator_map = {row[1]: row[0] for row in cursor.fetchall()}
-        # Add the operator id to the dataframe
+        # Add the operator ID to the dataframe
         ppm_df["operator_id"] = ppm_df["name"].map(operator_map)
         # Drop the operator name column
         ppm_df = ppm_df.drop("name", axis=1)
@@ -64,13 +73,14 @@ def save_ppm_data(csv_file: Path) -> None:
         # Save the dataframe to the database under performance table
         ppm_df.to_sql("performance", conn, if_exists="append", index=False)
         conn.commit()
-        logging.info(
-            "Saved {num} rows to the database", extra={"num": len(ppm_df.index)}
-        )
+        logging.info("Saved %s rows to the database", len(ppm_df.index))
+        # Delete the CSV file
+        csv_file.unlink()
+        logging.info("Deleted %s", csv_file)
 
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     create_db()
-    csv_path = Path("train_data.csv")
+    csv_path = Path(__file__).parent / "train_data.csv"
     save_ppm_data(csv_path)
