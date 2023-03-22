@@ -4,3 +4,4 @@ mypy >= 1
 ruff >= 0.0.257
 ssort >= 0.11.6
 pandas-stubs >= 1.5.3
+types-Flask >= 1.1.6

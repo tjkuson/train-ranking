@@ -13,10 +13,11 @@ from typing import Any
 
 import stomp
 
-from . import constants
+from train_app import constants
 
 
-class StompClient(stomp.ConnectionListener):
+# stomp doesn't have stubs for the ConnectionListener so thinks this subclasses Any
+class StompClient(stomp.ConnectionListener):  # type: ignore[misc]
     """Class to handle the STOMP connection."""
 
     def on_heartbeat(self: StompClient) -> None:
@@ -67,7 +68,7 @@ class StompClient(stomp.ConnectionListener):
                     csv_writer.writerow(item.values())
 
         except Exception as exc:
-            logging.exception(exc)
+            logging.exception("Error parsing message", exc_info=exc)
         else:
             logging.info("Message received and parsed successfully")
 
