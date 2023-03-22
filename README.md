@@ -22,9 +22,10 @@ You will have to create a `constants.py` file in the `app` directory with the fo
 # Path: app/constants.py
 username = ...
 password = ...
+flask_secret_key = ...
 ```
 
-The username and password are the ones you use to log in to the Network Rail API.
+The username and password are the ones you use to log in to the Network Rail API. The Flask secret key is used to encrypt the session cookie and other security-related things. It should be a long random `str` or `bytes` object.
 
 ## Develop
 
