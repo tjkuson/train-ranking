@@ -1,13 +1,15 @@
 """Monitor trains."""
 import os
+from collections.abc import Mapping
 from contextlib import suppress
+from typing import Any
 
 from flask import Flask
 
 from . import constants
 
 
-def create_app(test_config=None) -> Flask:
+def create_app(test_config: None | Mapping[str, Any] = None) -> Flask:
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
@@ -25,6 +27,16 @@ def create_app(test_config=None) -> Flask:
     # Ensure instance folder exists
     with suppress(OSError):
         os.makedirs(app.instance_path)
+
+    # Add the database functions
+    from . import db
+
+    db.init_app(app)
+
+    # Add the rankings page
+    from . import rankings
+
+    app.register_blueprint(rankings.bp)
 
     # Add the about page
     from . import about

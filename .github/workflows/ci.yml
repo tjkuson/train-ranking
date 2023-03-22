@@ -29,4 +29,5 @@ jobs:
         run: |
           black --check train_app
           ssort --check train_app
+          mypy --strict train_app
           npm run format-check
