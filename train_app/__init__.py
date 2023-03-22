@@ -6,7 +6,7 @@ from typing import Any
 
 from flask import Flask
 
-from . import constants
+from train_app import constants
 
 
 def create_app(test_config: None | Mapping[str, Any] = None) -> Flask:
