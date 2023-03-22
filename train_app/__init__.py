@@ -8,6 +8,8 @@ from flask import Flask
 
 from train_app import constants
 
+__all__ = ["create_app", "constants"]
+
 
 def create_app(test_config: None | Mapping[str, Any] = None) -> Flask:
     """Create and configure an instance of the Flask application."""
