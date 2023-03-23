@@ -8,6 +8,8 @@ Note: this is a work in progress.
 
 I wanted to see which train operators were the most punctual in the United Kingdom. Each network has a monopoly on its lines, so direct competition and comparisons between operators are impossible. Nonetheless, it is still fun to compare.
 
+While the PPM data is available from Network Rail on their website, it does not compare operators. It also does not provide a historical record of PPM data. This project aims to solve both of these problems.
+
 ## Features
 
 - Fetches data from the Network Rail API
