@@ -120,8 +120,72 @@ def save_ppm_data_command() -> None:
     click.echo("Saved data from CSV file to database.")
 
 
+def prune_database() -> None:
+    """Delete records so that each operator has only one record per day (the latest)."""
+    db = get_db()
+    cursor = db.cursor()
+    # Check if there are any operators with multiple records per day
+    cursor.execute(
+        """
+        SELECT name, record_date, COUNT(*) AS count
+        FROM performance
+        JOIN operator ON performance.operator_id = operator.id
+        GROUP BY name, record_date
+        HAVING count > 1
+        """
+    )
+    rows = cursor.fetchall()
+    if not rows:
+        logging.info("No operators with multiple records per day.")
+        return
+    # If so, delete all but the latest record for each operator on each day
+    for row in rows:
+        cursor.execute(
+            """
+            DELETE FROM performance
+            WHERE operator_id = (
+                SELECT id FROM operator WHERE name = ?
+            )
+            AND record_date = ?
+            AND TIME(record_time) < (
+                SELECT MAX(TIME(record_time))
+                FROM performance
+                WHERE operator_id = (
+                    SELECT id FROM operator WHERE name = ?
+                )
+                AND record_date = ?
+            )
+            """,
+            (row["name"], row["record_date"], row["name"], row["record_date"]),
+        )
+    # Check there are no operators with multiple records per day
+    cursor.execute(
+        """
+        SELECT name, record_date, COUNT(*) AS count
+        FROM performance
+        JOIN operator ON performance.operator_id = operator.id
+        GROUP BY name, record_date
+        HAVING count > 1
+        """
+    )
+    rows = cursor.fetchall()
+    if rows:
+        msg = "Failed to delete records so that each operator has only one record per day."
+        raise RuntimeError(msg)
+    db.commit()
+    logging.info("Deleted records so that each operator has only one record per day.")
+
+
+@click.command("prune-database")
+def prune_database_command() -> None:
+    """Delete records so that each operator has only one record per day (the latest)."""
+    prune_database()
+    click.echo("Deleted records so that each operator has only one record per day.")
+
+
 def init_app(app: Flask) -> None:
     """Register database functions with a given Flask app."""
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
     app.cli.add_command(save_ppm_data_command)
+    app.cli.add_command(prune_database_command)
