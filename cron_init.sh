@@ -12,4 +12,4 @@ echo "Running cron"
 cron -f &
 
 echo "Running data collection"
-python3 -m train_app.data &
+python3 -m rail_rank.data &

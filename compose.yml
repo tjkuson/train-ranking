@@ -12,6 +12,6 @@ services:
         source: .
         target: /app
     environment:
-      - FLASK_APP=train_app
+      - FLASK_APP=rail_rank
       - FLASK_ENV=development
-    command: sh -c "chmod 775 cron_init.sh && sh cron_init.sh && python3 -m flask --app train_app run --host 0.0.0.0 --debug"
+    command: sh -c "chmod 775 cron_init.sh && sh cron_init.sh && python3 -m flask --app rail_rank run --host 0.0.0.0 --debug"

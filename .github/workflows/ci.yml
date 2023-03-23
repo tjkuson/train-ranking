@@ -27,8 +27,8 @@ jobs:
           npm install
       - name: Lint
         run: |
-          black --check train_app
-          ssort --check train_app
-          mypy --strict train_app
-          sqlfluff lint train_app
+          black --check rail_rank
+          ssort --check rail_rank
+          mypy --strict rail_rank
+          sqlfluff lint rail_rank
           npm run format-check
