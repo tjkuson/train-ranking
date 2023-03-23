@@ -61,6 +61,10 @@ Install the development dependencies:
 
     pip install -r requirements-dev.txt
 
+### Roadmap
+
+To see what features are planned, check out the [project board](https://github.com/users/tjkuson/projects/5). If you have any suggestions, please open an issue.
+
 ## Authors
 
 RailRank was created by Tom Kuson ([@tjkuson](https://github.com/tjkuson)).
