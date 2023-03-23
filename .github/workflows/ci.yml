@@ -30,4 +30,5 @@ jobs:
           black --check train_app
           ssort --check train_app
           mypy --strict train_app
+          sqlfluff lint train_app
           npm run format-check
