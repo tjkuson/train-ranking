@@ -39,6 +39,8 @@ flask_secret_key: str | bytes = ...
 
 The username and password are the ones you use to log in to the Network Rail API. The Flask secret key is used to encrypt the session cookie and other security-related things.
 
+**Do not commit this file to version control.**
+
 To run app commands, execute:
 
     flask --app train_app <command>
