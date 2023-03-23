@@ -44,7 +44,7 @@ select = [
     "PL",
     "TRY",
 ]
-target-version = "py311"
+target-version = "py310"
 
 [[tool.mypy.overrides]]
 module = "stomp"
@@ -55,4 +55,4 @@ dialect = "sqlite"
 
 [project]
 name = "flask-spark_template"
-requires-python = ">=3.11"
+requires-python = ">=3.10"

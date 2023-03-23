@@ -7,7 +7,7 @@ import socket
 import sys
 import time
 from csv import writer
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -85,7 +85,7 @@ class StompClient(stomp.ConnectionListener):  # type: ignore[misc]
         """Get the timestamp from the JSON message."""
         unix_timestamp = rtppm_data["RTPPMData"]["snapshotTStamp"]
         # National Rail uses milliseconds, so divide by 1000
-        ppm_dt = datetime.fromtimestamp(int(unix_timestamp) / 1000, tz=UTC)
+        ppm_dt = datetime.fromtimestamp(int(unix_timestamp) / 1000, tz=timezone.utc)
         ppm_date, ppm_time = str(ppm_dt).split(" ")
         return {"date": ppm_date, "time": ppm_time}
 

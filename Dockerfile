@@ -1,10 +1,10 @@
-FROM fedora:37 as base
+FROM ubuntu:latest as base
 
 WORKDIR /app
 
 # Install dependencies
-RUN dnf install -y python3 python3-pip && \
-    dnf clean all
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip cron
 
 # Install Python packages
 COPY requirements.txt /tmp/requirements.txt
