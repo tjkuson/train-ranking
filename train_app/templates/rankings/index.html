@@ -6,7 +6,9 @@
       <tr>
         <th>Ranking</th>
         <th>Operator</th>
-        <th>PPM</th>
+        <th>PPM (7 day avg)</th>
+        <th>PPM (30 day avg)</th>
+        <th>PPM (90 day avg)</th>
       </tr>
     </thead>
     <tbody>
@@ -14,7 +16,9 @@
       <tr>
         <td>{{ loop.index }}</td>
         <td>{{ operator.name }}</td>
-        <td>{{ operator.ppm }}</td>
+        <td>{{ operator.average_rating_7_days }}</td>
+        <td>{{ operator.average_rating_30_days }}</td>
+        <td>{{ operator.average_rating_90_days }}</td>
       </tr>
       {% endfor %}
     </tbody>
