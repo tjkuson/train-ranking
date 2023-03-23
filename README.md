@@ -43,13 +43,13 @@ The username and password are the ones you use to log in to the Network Rail API
 
 To run app commands, execute:
 
-    flask --app train_app <command>
+    flask --app rail_rank <command>
 
 Here are some examples:
 
-    flask --app train_app init-db
-    flask --app train_app save-ppm-data
-    flask --app train_app prune-database
+    flask --app rail_rank init-db
+    flask --app rail_rank save-ppm-data
+    flask --app rail_rank prune-database
 
 ## Develop
 

@@ -1,5 +1,5 @@
 {
-  "name": "train_app",
+  "name": "rail_rank",
   "version": "1.0.0",
   "description": "> Rank train operators based on their punctuality.",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tjkuson/train-ranking.git"
+    "url": "git+https://github.com/tjkuson/RailRank.git"
   },
   "author": "Tom Kuson",
   "license": "AGPL-3.0-only",
   "bugs": {
-    "url": "https://github.com/tjkuson/train-ranking/issues"
+    "url": "https://github.com/tjkuson/RailRank/issues"
   },
-  "homepage": "https://github.com/tjkuson/train-ranking#readme",
+  "homepage": "https://github.com/tjkuson/RailRank#readme",
   "devDependencies": {
     "prettier": "^2.8.6"
   }

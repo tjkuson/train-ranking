@@ -127,7 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-train_app/constants.py
+rail_rank/constants.py
 
 # Spyder project settings
 .spyderproject
@@ -164,9 +164,9 @@ cython_debug/
 .ruff_cache/
 
 # Data storage
-train_app/train.db
-train_app/train_data.csv
-train_app/train_data_backup.csv
+rail_rank/train.db
+rail_rank/train_data.csv
+rail_rank/train_data_backup.csv
 train_crontab
 
 # Node

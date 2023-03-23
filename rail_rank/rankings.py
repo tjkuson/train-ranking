@@ -4,7 +4,7 @@ from flask import (
     render_template,
 )
 
-from train_app.db import get_db
+from rail_rank.db import get_db
 
 bp = Blueprint("rankings", __name__, url_prefix="/")
 

@@ -7,7 +7,7 @@ from typing import Any
 from flask import Flask
 
 # constants.py is ignored by git so mypy complains when running on GitHub Actions
-from train_app import constants  # type: ignore[attr-defined]
+from rail_rank import constants  # type: ignore[attr-defined]
 
 __all__ = ["create_app", "constants"]
 

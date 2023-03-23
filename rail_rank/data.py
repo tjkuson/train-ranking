@@ -13,7 +13,7 @@ from typing import Any
 
 import stomp
 
-from train_app import constants
+from rail_rank import constants
 
 
 # stomp doesn't have stubs for the ConnectionListener so thinks this subclasses Any
