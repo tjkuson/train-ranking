@@ -6,15 +6,16 @@ Note: this is a work in progress.
 
 ## Motivation
 
-I wanted to see which train operators were the most punctual in the United Kingdom. Each network has a monopoly on its own lines, so direct competition and comparisons are not possible. Nonetheless, it is still fun to compare.
+I wanted to see which train operators were the most punctual in the United Kingdom. Each network has a monopoly on its lines, so direct competition and comparisons between operators are impossible. Nonetheless, it is still fun to compare.
 
 ## Features
 
 - Fetches data from the Network Rail API
 - Displays PPM data in a table using Flask
 - Saves data to an SQLite database
+- Scheduled ETL using cron jobs for set-and-forget operation
 
-More features to come. If you have any suggestions, please open an issue.
+More features to come. If you have any suggestions, please open an issue. It is currently using SQLite, but I plan to add support for other databases if demand warrants scaling.
 
 ## Usage
 
