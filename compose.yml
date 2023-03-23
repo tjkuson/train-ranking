@@ -14,4 +14,4 @@ services:
     environment:
       - FLASK_APP=train_app
       - FLASK_ENV=development
-    command: python3 -m flask --app train_app run --debug
+    command: sh -c "chmod 775 cron_init.sh && sh cron_init.sh && python3 -m flask --app train_app run --host 0.0.0.0 --debug"

@@ -167,6 +167,7 @@ cython_debug/
 train_app/train.db
 train_app/train_data.csv
 train_app/train_data_backup.csv
+train_crontab
 
 # Node
 node_modules/
