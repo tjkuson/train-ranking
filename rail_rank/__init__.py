@@ -40,6 +40,7 @@ def create_app(test_config: None | Mapping[str, Any] = None) -> Flask:
     from . import rankings
 
     app.register_blueprint(rankings.bp)
+    app.add_url_rule("/", endpoint="index")
 
     # Add the about page
     from . import about

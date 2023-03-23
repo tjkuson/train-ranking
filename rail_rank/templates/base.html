@@ -12,7 +12,7 @@
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="">
+        <a class="navbar-item" href="{{ url_for('index') }}">
           <span>RailRank</span>
         </a>
         <a
@@ -29,15 +29,19 @@
       </div>
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item"> Home </a>
+          <a class="navbar-item" href="{{ url_for('index') }}">Home</a>
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link"> More </a>
+            <a class="navbar-link">More</a>
 
             <div class="navbar-dropdown">
-              <a class="navbar-item" href="{{ url_for('about') }}"> About </a>
-              <a class="navbar-item"> Contact </a>
+              <a class="navbar-item" href="{{ url_for('about') }}">About</a>
+              <a class="navbar-item" href="{{ url_for('about') }}">Contact</a>
               <hr class="navbar-divider" />
-              <a class="navbar-item"> Report an issue </a>
+              <a
+                class="navbar-item"
+                href="https://github.com/tjkuson/RailRank/issues/new"
+                >Report an issue</a
+              >
             </div>
           </div>
         </div>
@@ -46,5 +50,18 @@
       </div>
     </nav>
     <div class="container">{% block content %}{% endblock %}</div>
+    <br>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>RailRank</strong> by
+          <a href="https://github.com/tjkuson">@tjkuson</a>. The source code is
+          released under the
+          <a href="https://www.gnu.org/licenses/agpl-3.0.en.html"
+            >AGPL version 3</a
+          >.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,6 +1,12 @@
 {% extends "base.html" %} {% block content %}
 <div class="content">
   <h1>Railway Operator Rankings</h1>
+  <p>
+    The Public Performance Measure (PPM) is the percentage of trains that arrive
+    ‘on time’ at their destination. The definition of ‘on time’ depends on
+    whether a service is categorised as long-distance (up to 10 minutes late) or
+    short-distance (up to 5 minutes late).
+  </p>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -23,5 +29,9 @@
       {% endfor %}
     </tbody>
   </table>
+  <p>
+    Source: Network Rail open data platform. Table sorted by the seven-day
+    average.
+  </p>
 </div>
 {% endblock %}
