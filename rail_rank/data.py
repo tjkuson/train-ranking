@@ -143,5 +143,13 @@ class DataFetcher:
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    fetcher = DataFetcher()
-    fetcher.connect_and_subscribe()
+    # Keep running forever
+    while True:
+        try:
+            fetcher = DataFetcher()
+            fetcher.connect_and_subscribe()
+        except Exception as exc:
+            logging.exception("Error fetching data", exc_info=exc)
+            logging.warning("Restarting in 15 seconds")
+            time.sleep(15)
+            logging.warning("Restarting")
