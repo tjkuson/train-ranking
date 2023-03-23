@@ -15,6 +15,7 @@ dev = [
     "ssort >= 0.11.6",
     "pandas-stubs >= 1.5.3",
     "types-Flask >= 1.1.6",
+    "sqlfluff >= 2.0.1",
 ]
 
 [tool.ruff]
@@ -49,6 +50,9 @@ target-version = "py311"
 [[tool.mypy.overrides]]
 module = "stomp"
 ignore_missing_imports = true
+
+[tool.sqlfluff.core]
+dialect = "sqlite"
 
 [project]
 name = "flask-spark_template"

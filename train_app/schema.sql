@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS operator (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT UNIQUE NOT NULL
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS performance (
@@ -9,5 +9,5 @@ CREATE TABLE IF NOT EXISTS performance (
     ppm INT NOT NULL,
     record_date TEXT NOT NULL,
     record_time TEXT NOT NULL,
-    FOREIGN KEY(operator_id) REFERENCES operator(id)
+    FOREIGN KEY (operator_id) REFERENCES operator (id)
 );
