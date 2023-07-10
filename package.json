@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/tjkuson/RailRank#readme",
   "devDependencies": {
-    "prettier": "^2.8.8"
+    "prettier": "^3.0.0"
   }
 }
