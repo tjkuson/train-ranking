@@ -9,12 +9,12 @@ jobs:
   build-docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build the container image with Docker
         run: docker build . --file Dockerfile --tag db-image:$(date +%s)
   build-podman:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build the container image with Podman
         run: podman build . --file Dockerfile --tag db-image:$(date +%s)
